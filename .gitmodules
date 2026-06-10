@@ -1,0 +1,24 @@
+[submodule "proposal/thesis"]
+	path = proposal/thesis
+	url = git@github.com:d-sun-cs/hitszthesis.git
+	branch = proposal
+[submodule "proposal/slides"]
+	path = proposal/slides
+	url = git@github.com:d-sun-cs/hitszbeamer.git
+	branch = proposal
+[submodule "midterm/thesis"]
+	path = midterm/thesis
+	url = git@github.com:d-sun-cs/hitszthesis.git
+	branch = midterm
+[submodule "midterm/slides"]
+	path = midterm/slides
+	url = git@github.com:d-sun-cs/hitszbeamer.git
+	branch = midterm
+[submodule "paper/tsx-overleaf"]
+	path = paper/tsx-overleaf
+	url = git@github.com:d-sun-cs/tsx-overleaf.git
+	branch = main
+[submodule "paper/tsx-slides"]
+	path = paper/tsx-slides
+	url = git@github.com:d-sun-cs/tsx-slides.git
+	branch = master

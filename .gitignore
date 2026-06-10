@@ -1,0 +1,13 @@
+# LaTeX 编译产物（子模块内各自也有忽略规则，这里兜底）
+**/build/
+**/*.aux
+**/*.log
+**/*.out
+**/*.toc
+**/*.synctex.gz
+**/*.fdb_latexmk
+**/*.fls
+**/*.nav
+**/*.snm
+**/*.bbl
+**/*.blg
