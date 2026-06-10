@@ -69,13 +69,12 @@ git commit -m "bump midterm/thesis submodule"
 
 > Linux/CI 环境的中文字体请使用 `fontset=fandol`（开源）。Windows/Mac 本地可改回 `windows`/`mac`。
 
-## 将父仓库推送到 GitHub（可选）
+## 远端托管
 
-本仓库目前为本地仓库。若要托管到 GitHub：
+本仓库已托管在 GitHub：`git@github.com:d-sun-cs/graduation-design.git`。
 
 ```bash
-git remote add origin git@github.com:d-sun-cs/<新仓库名>.git
-git push -u origin main
+git clone --recurse-submodules git@github.com:d-sun-cs/graduation-design.git
 ```
 
 详细的协作与 agent 交接约定见 [`AGENTS.md`](AGENTS.md)。

@@ -69,15 +69,18 @@ git add <子模块路径> && git commit -m "bump <子模块> pointer"
 - 本环境通过 SSH 以 GitHub 用户 `d-sun-cs` 认证，四个子仓库均有推送权限。
 - 无 `gh` CLI、无全局 git 身份。各仓库已设置 per-repo 身份：
   `user.name=d-sun-cs`，`user.email=d-sun-cs@users.noreply.github.com`。新克隆的仓库需重新设置。
-- 父仓库 `graduation-design` 目前是**本地仓库**，尚未推送到 GitHub（环境无法自动创建远端空仓库）。如需托管，请人工在 GitHub 建空仓库后执行 `git remote add origin ... && git push -u origin main`。
+- 父仓库 `graduation-design` 已托管在 `git@github.com:d-sun-cs/graduation-design.git`（分支 `main`）。
 
 ## 6. 当前状态（交接时）
 
+- **工作根目录 = 父仓库 `graduation-design`**。后续 AI agent 直接以本目录为项目根打开，子仓库内容通过 submodule 访问（`proposal/`、`midterm/`、`paper/`）。
 - [x] `hitszthesis@midterm` 已创建并推送，可编译。
 - [x] `hitszbeamer@midterm` 已创建并推送，可编译。
-- [x] 父仓库 `graduation-design` 已用 submodule 组织好 6 个挂载点（本地）。
+- [x] 父仓库 `graduation-design` 已用 submodule 组织好 6 个挂载点，并已推送到 GitHub `main` 分支。
 - [ ] 中期报告/幻灯片**正文内容尚未撰写**（按用户要求，本次只整理资源、管理分支）。
 - [ ] 论文新创新点（毕业设计扩展点）尚未开展，中期阶段仅需规划。
+
+> 给后续 agent：在父仓库根目录工作时，编辑子模块内文件后，需在**子模块内** commit & push（注意先 `git checkout <分支>` 避免 detached HEAD），再回父仓库 `git add <子模块路径> && git commit` 记录指针，最后 `git push` 父仓库。详见第 4 节。
 
 ## 7. 下一步建议（写中期时）
 
