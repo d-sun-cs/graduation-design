@@ -15,5 +15,9 @@
 
 # 本地编辑器配置与工作区（按需保留在本地，不入库）
 .vscode/
-.agents/
+.agents/*
+!.agents/skills/
+.agents/skills/*
+!.agents/skills/codex-ppt/
+!.agents/skills/codex-ppt/**
 .local_workspace/
