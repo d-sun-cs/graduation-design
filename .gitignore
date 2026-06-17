@@ -20,4 +20,6 @@
 .agents/skills/*
 !.agents/skills/codex-ppt/
 !.agents/skills/codex-ppt/**
+!.agents/skills/image-to-editable-ppt/
+!.agents/skills/image-to-editable-ppt/**
 .local_workspace/
