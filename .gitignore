@@ -25,3 +25,6 @@
 !.agents/skills/defense-slide-writing/
 !.agents/skills/defense-slide-writing/**
 .local_workspace/
+
+# 早期 PPTX 生成尝试产物；当前中期答辩以 midterm/slides Beamer 为准
+midterm/pptx/
