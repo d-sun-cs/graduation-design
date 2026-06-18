@@ -22,4 +22,6 @@
 !.agents/skills/codex-ppt/**
 !.agents/skills/image-to-editable-ppt/
 !.agents/skills/image-to-editable-ppt/**
+!.agents/skills/defense-slide-writing/
+!.agents/skills/defense-slide-writing/**
 .local_workspace/

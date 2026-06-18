@@ -1,0 +1,4 @@
+interface:
+  display_name: "Defense Slide Writing"
+  short_description: "Concise academic defense slide writing"
+  default_prompt: "Use $defense-slide-writing to revise my defense slides so each page is concrete, concise, and result-first."
