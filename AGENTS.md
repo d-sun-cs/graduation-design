@@ -6,7 +6,7 @@
 
 - 课题：**移位异或纠删码的高效实现研究**。
 - 学生：孙铎（学号 24S051046），导师：王强 副教授，哈尔滨工业大学（深圳）计算机科学与技术学院。
-- 毕业设计推进阶段：开题 → **中期（当前）** → 最终答辩。
+- 毕业设计推进阶段：开题 → 中期 → **结题论文初始化（当前）** → 最终答辩。
 - 毕业设计内容 = 已产出的一篇学术论文（IPDPS 2026 投稿，FastTT / shift-XOR）+ 后续在其基础上扩展的**新创新点**（中期阶段无需完成新创新点，仅需规划）。
 
 ## 2. 仓库与分支总览
@@ -15,7 +15,7 @@
 
 | 子仓库 | 远端 | 已用分支 | 文档类 / 引擎 | 含义 |
 | --- | --- | --- | --- | --- |
-| hitszthesis | `git@github.com:d-sun-cs/hitszthesis.git` | `proposal`、`midterm` | proposal→hitszthesis；midterm→hithesisart；均 xelatex | 学位论文报告 |
+| hitszthesis | `git@github.com:d-sun-cs/hitszthesis.git` | `proposal`、`midterm`、`final` | proposal/final→hitszthesis；midterm→hithesisart；均 xelatex | 阶段报告与硕士学位论文 |
 | hitszbeamer | `git@github.com:d-sun-cs/hitszbeamer.git` | `proposal`、`midterm` | beamer + ctex，xelatex | 答辩幻灯片 |
 | tsx-overleaf | `git@github.com:d-sun-cs/tsx-overleaf.git` | `main` | IEEEtran | 学术论文正文 |
 | tsx-slides | `git@github.com:d-sun-cs/tsx-slides.git` | `master` | beamer | 学术论文汇报幻灯片 |
@@ -23,7 +23,7 @@
 挂载路径见根目录 `README.md` 的映射表。
 
 ### 分支命名约定
-- 毕业设计类仓库（hitszthesis / hitszbeamer）：每个阶段一个分支，已有 `proposal`、`midterm`。后续若有最终稿，建议命名 `final` 或 `defense`。
+- 毕业设计类仓库（hitszthesis / hitszbeamer）：每个阶段一个分支，已有 `proposal`、`midterm`；结题论文使用 `hitszthesis` 的 `final` 分支，挂载为 `final/thesis`。
 - 论文类仓库（tsx-overleaf / tsx-slides）：保持各自原有主分支（`main` / `master`），**不为毕业设计阶段新建分支**。
 
 ## 3. 中期分支是怎么来的（重要）
@@ -62,6 +62,7 @@ git add <子模块路径> && git commit -m "bump <子模块> pointer"
 ### 4.3 编译验证（务必本地编译通过再提交）
 - 中期报告：`cd midterm/thesis && mkdir -p build/front build/body && latexmk report.tex` → `build/report.pdf`
 - 中期幻灯片：`cd midterm/slides && xelatex -interaction=nonstopmode main.tex`（需 3 遍 + 中间 `bibtex main`）→ `main.pdf`
+- 结题硕士论文：`cd final/thesis && latexmk main.tex` → `main.pdf`；首次编译会自动生成本地类文件，也可用 `make thesis`。
 - 本环境 `latexmk` / `xelatex` 可用；中文用 `fontset=fandol`（开源），不要用 `windows`（缺字体会报 Missing character）。
 
 ## 5. Git 身份与权限
@@ -73,17 +74,27 @@ git add <子模块路径> && git commit -m "bump <子模块> pointer"
 
 ## 6. 当前状态（交接时）
 
-- **工作根目录 = 父仓库 `graduation-design`**。后续 AI agent 直接以本目录为项目根打开，子仓库内容通过 submodule 访问（`proposal/`、`midterm/`、`paper/`）。
+- **工作根目录 = 父仓库 `graduation-design`**。后续 AI agent 直接以本目录为项目根打开，子仓库内容通过 submodule 访问（`proposal/`、`midterm/`、`final/`、`paper/`）。
 - [x] `hitszthesis@midterm` 已创建并推送，可编译。
 - [x] `hitszbeamer@midterm` 已创建并推送，可编译。
-- [x] 父仓库 `graduation-design` 已用 submodule 组织好 6 个挂载点，并已推送到 GitHub `main` 分支。
-- [ ] 中期报告/幻灯片**正文内容尚未撰写**（按用户要求，本次只整理资源、管理分支）。
+- [x] `hitszthesis@final` 已建立，初始论文内容通过本地及全新检出编译，详见第 8 节。
+- [x] 父仓库 `graduation-design` 使用 submodule 组织 7 个挂载点。
+- [x] 中期报告与答辩幻灯片正文已撰写，后续按实际研究进展维护。
 - [ ] 论文新创新点（毕业设计扩展点）尚未开展，中期阶段仅需规划。
 
 > 给后续 agent：在父仓库根目录工作时，编辑子模块内文件后，需在**子模块内** commit & push（注意先 `git checkout <分支>` 避免 detached HEAD），再回父仓库 `git add <子模块路径> && git commit` 记录指针，最后 `git push` 父仓库。详见第 4 节。
 
-## 7. 下一步建议（写中期时）
+## 7. 下一步建议
 
-1. 在 `midterm/thesis/body/report_midterm.tex` 按中期模板的 section（研究内容与进度、已完成工作、后期计划、困难与问题、按期完成可能性）填写，可参考 `proposal/thesis` 与 `paper/tsx-overleaf` 的成果。
-2. 在 `midterm/slides` 中按上述结构调整 `body/*.tex`。
+1. 在 `final/thesis` 中依据已有FastTT论文与中期材料逐步完善正文，补充真实实验结果与分析。
+2. 核实分类号、答辩日期和成果发表信息；第二个创新点按实际进展更新，格式要求对照上游模板与学院最新规范。
 3. 每次改动遵循第 4 节工作流，先本地编译通过再 push，并在父仓库 bump 指针。
+
+## 8. 结题学位论文
+
+- 路径 `final/thesis`，远端仍为 `d-sun-cs/hitszthesis`，工作分支 `final`，从该仓库的 `main` 建立。
+- 使用上游 YangLaTeX/hitszthesis v3.4 的正式学位论文类，配置 `type=master,fontset=fandol`。不要沿用开题分支中改写为开题报告的类文件，也不要使用中期的 `hithesisart`。
+- 入口 `main.tex`，封面和摘要在 `front/coverinformation.tex`，正文在 `body/chapter01.tex` 至 `chapter05.tex`。
+- `latexmkrc` 自动从 `.dtx`/`.ins` 生成本地类文件；生成的 `.cls`/`.cfg`/`.ist` 和 `dtx-style.sty` 不入库，论文输出 `main.pdf` 入库。
+- 当前正文用于编译验证，包含已有FastTT工作的整理框架及局部更新研究方案；不得将占位内容误写为已完成实验或最终结论。分类号、具体答辩日期和发表信息待核实，封面年月预填 2027 年 5 月。
+- 沿用第 4 节的父子仓库提交顺序：先编译并推送 `hitszthesis@final`，再提交和推送父仓库指针。

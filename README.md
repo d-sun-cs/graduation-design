@@ -1,6 +1,6 @@
 # 硕士毕业设计资源总仓库（graduation-design）
 
-本仓库是**毕业设计资源聚合仓库**，本身不直接存放内容，而是通过 **git submodule** 将多个子仓库的不同分支挂载为不同文件夹，方便同时引用「开题」「中期」以及配套「学术论文」的所有材料。
+本仓库是**毕业设计资源聚合仓库**，本身不直接存放内容，而是通过 **git submodule** 将多个子仓库的不同分支挂载为不同文件夹，方便同时引用「开题」「中期」「结题」以及配套「学术论文」的所有材料。
 
 > 研究课题：**移位异或纠删码的高效实现研究**（学生：孙铎，导师：王强 副教授，哈尔滨工业大学（深圳）计算机科学与技术学院）
 
@@ -12,10 +12,11 @@
 | `proposal/slides` | `hitszbeamer` | `proposal` | 开题答辩幻灯片 |
 | `midterm/thesis`  | `hitszthesis` | `midterm`  | 中期报告（hithesisart 文档类） |
 | `midterm/slides`  | `hitszbeamer` | `midterm`  | 中期答辩幻灯片 |
+| `final/thesis` | `hitszthesis` | `final` | 硕士学位论文（hitszthesis 文档类） |
 | `paper/tsx-overleaf` | `tsx-overleaf` | `main`   | 学术论文（IPDPS 2026 投稿） |
 | `paper/tsx-slides`   | `tsx-slides`   | `master` | 学术论文汇报幻灯片 |
 
-注意：同一个子仓库（如 `hitszthesis`）以**不同分支**被挂载到 `proposal/thesis` 与 `midterm/thesis` 两个不同路径，互不影响。
+注意：同一个子仓库（如 `hitszthesis`）以**不同分支**被挂载到 `proposal/thesis`、`midterm/thesis` 与 `final/thesis`，分别保存各阶段材料。
 
 ## 首次克隆
 
@@ -64,10 +65,17 @@ git commit -m "bump midterm/thesis submodule"
 | --- | --- | --- | --- |
 | 中期报告 `midterm/thesis` | `mkdir -p build/front build/body && latexmk report.tex` | xelatex（latexmkrc 内置） | `build/report.pdf` |
 | 中期幻灯片 `midterm/slides` | `xelatex -interaction=nonstopmode main.tex`（×3 + bibtex） | xelatex | `main.pdf` |
+| 硕士学位论文 `final/thesis` | `latexmk main.tex`（自动生成本地类文件） | xelatex + bibtex | `main.pdf` |
 | 开题报告 `proposal/thesis` | 先 `xetex hitszthesis.ins` 生成类文件，再 `latexmk main.tex` | xelatex | `main.pdf` |
 | 论文 `paper/tsx-overleaf` | `latexmk main.tex` 或 `pdflatex` | 视模板 | `main.pdf` |
 
 > Linux/CI 环境的中文字体请使用 `fontset=fandol`（开源）。Windows/Mac 本地可改回 `windows`/`mac`。
+
+### 硕士学位论文 `final/thesis`
+
+`final` 分支从 `d-sun-cs/hitszthesis` 的 `main` 建立，采用与 [YangLaTeX/hitszthesis](https://github.com/YangLaTeX/hitszthesis) 上游一致的 v3.4 学位论文模板，入口为 `main.tex`，配置为 `type=master,fontset=fandol`。首次执行 `latexmk main.tex` 时，项目配置会自动从 `.dtx` 和 `.ins` 生成本地类文件。
+
+目前填入与课题相关的初始内容，用于验证封面、中英文摘要、目录、正文、图表、参考文献和授权声明页。尚未完成的实验按研究方案表述，具体性能数据与最终结论待后续补充。编辑位置和待核实的封面字段见 [README-final.md](final/thesis/README-final.md)。
 
 ### 开题报告 `proposal/thesis` 的特殊步骤（重要）
 

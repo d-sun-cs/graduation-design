@@ -22,3 +22,7 @@
 	path = paper/tsx-slides
 	url = git@github.com:d-sun-cs/tsx-slides.git
 	branch = master
+[submodule "final/thesis"]
+	path = final/thesis
+	url = git@github.com:d-sun-cs/hitszthesis.git
+	branch = final
